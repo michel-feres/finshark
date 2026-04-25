@@ -1,28 +1,42 @@
-import React from 'react';
-//import "./Card.css"
+import React, {SyntheticEvent} from "react";
+import {Link} from "react-router-dom";
+import "./Card.css";
+import {CompanySearch} from "../../company";
+import AddPortfolio from "../Portfolio/AddPortfolio/AddPortfolio";
 
 interface Props {
-  companyName: string;
-  ticker: string;
-  price: number;
+    id: string;
+    searchResult: CompanySearch;
+    onPortfolioCreate: (e: SyntheticEvent) => void;
 }
 
-const Card: React.FC<Props> = ({ companyName, ticker, price }: Props): JSX.Element => {
-  return (
-    <div className="card">
-      <img
-        src="https://images.unsplash.com/photo-1775112862811-29f3adb7f990?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        alt="Image"
-      />
-      <div className="details">
-        <h2>{companyName} ({ticker})</h2>
-        <p>{price}</p>
-        <p className="info">
-          uma coisa aí ne
-        </p>
-      </div>
-    </div>
-  )
-}
+const Card: React.FC<Props> = ({
+                                   id,
+                                   searchResult,
+                                   onPortfolioCreate,
+                               }: Props) => {
+    return (
+        <div
+            className="flex flex-col items-center justify-between w-full p-6 bg-slate-100 rounded-lg md:flex-row"
+            key={id}
+            id={id}
+        >
+            <Link
+                to={`/company/${searchResult.symbol}`}
+                className="font-bold text-center text-veryDarkViolet md:text-left"
+            >
+                {searchResult.name} ({searchResult.symbol})
+            </Link>
+            <p className="text-veryDarkBlue">{searchResult.name}</p>
+            <p className="font-bold text-veryDarkBlue">
+                {searchResult.name} - {searchResult.name}
+            </p>
+            <AddPortfolio
+                onPortfolioCreate={onPortfolioCreate}
+                symbol={searchResult.symbol}
+            />
+        </div>
+    );
+};
 
-export default Card
+export default Card;

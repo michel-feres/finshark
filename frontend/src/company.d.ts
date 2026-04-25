@@ -1,47 +1,39 @@
-export interface CompanySearch {
-  currency: string;
-  exchangeShortName: string;
+interface FinnhubSearchResponse {
+  result: {
+    symbol: string;
+    description: string;
+  }[];
+}
+
+interface FinnhubProfileResponse {
+  ticker: string;
   name: string;
-  stockExchange: string;
+  country: string;
+  currency: string;
+  exchange: string;
+  ipo: string;
+  marketCapitalization: number;
+  weburl: string;
+  logo: string;
+  finnhubIndustry: string;
+}
+
+export interface CompanySearch {
   symbol: string;
+  name: string;
 }
 
 export interface CompanyProfile {
-  symbol: string;
-  price: number;
-  beta: number;
-  volAvg: number;
-  mktCap: number;
-  lastDiv: number;
-  range: string;
-  changes: number;
-  companyName: string;
+  ticker: string;
+  name: string;
+  country: string;
   currency: string;
-  cik: string;
-  isin: string;
   exchange: string;
-  exchangeShortName: string;
-  industry: string;
-  website: string;
-  description: string;
-  ceo: string;
-  sector: string;
-  counter: string;
-  fullTimeEmployees: string;
-  phone: string;
-  address: string;
-  city: string;
-  state: string;
-  zip: string;
-  dcfDiff: number;
-  dcf: number;
-  image: string;
-  ipoDate: string;
-  defaultImage: boolean;
-  isEtf: boolean;
-  isActivelyTrading: boolean;
-  isAdr: boolean;
-  isFund: boolean;
+  ipo: string;
+  marketCapitalization: number;
+  weburl: string;
+  logo: string;
+  finnhubIndustry: string;
 }
 
 export interface CompanyKeyRatios {

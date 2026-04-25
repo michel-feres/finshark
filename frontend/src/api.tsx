@@ -1,18 +1,32 @@
 import axios from "axios";
-import { CompanySearch } from "./company";
-
-interface SearchResponse {
-    data: CompanySearch[];
-}
+import {FinnhubProfileResponse, FinnhubSearchResponse} from "./company";
 
 export const searchCompanies = async (query: string) => {
     try {
-        const data = await axios.get<SearchResponse>(
-            `https://financialmodelingprep.com/api/v3/search-ticker?query=${query}&apikey=${process.env.REACT_APP_API_KEY}`
+        const response = await axios.get<FinnhubSearchResponse>(
+            `https://finnhub.io/api/v1/search?q=${query}&token=${process.env.REACT_APP_API_KEY}`
         );
-        return data;
+
+        return response.data.result.map((item) => ({
+            symbol: item.symbol,
+            name: item.description,
+        }));
     } catch (error: any) {
-        console.log("error message: ", error?.message);
-        return error?.message || "Erro inesperado";
+        console.log(error.message);
+        return [];
+    }
+};
+
+// 🏢 PROFILE
+export const getCompanyProfile = async (symbol: string) => {
+    try {
+        const response = await axios.get<FinnhubProfileResponse>(
+            `https://finnhub.io/api/v1/stock/profile2?symbol=${symbol}&token=${process.env.REACT_APP_API_KEY}`
+        );
+
+        return response.data;
+    } catch (error: any) {
+        console.log(error.message);
+        return null;
     }
 };
