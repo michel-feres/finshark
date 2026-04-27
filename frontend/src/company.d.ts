@@ -5,17 +5,39 @@ interface FinnhubSearchResponse {
   }[];
 }
 
-interface FinnhubProfileResponse {
-  ticker: string;
+// interface FinnhubProfileResponse {
+//   ticker: string;
+//   name: string;
+//   country: string;
+//   currency: string;
+//   exchange: string;
+//   ipo: string;
+//   marketCapitalization: number;
+//   weburl: string;
+//   logo: string;
+//   finnhubIndustry: string;
+// }
+
+export interface FinnhubProfileResponse {
   name: string;
-  country: string;
-  currency: string;
-  exchange: string;
-  ipo: string;
+  ticker: string;
   marketCapitalization: number;
-  weburl: string;
+  shareOutstanding: number;
   logo: string;
   finnhubIndustry: string;
+}
+
+export interface FinnhubMetricsResponse {
+  metric: {
+    marketCapitalization?: number;
+    currentRatioAnnual?: number;
+    roeTTM?: number;
+    cashPerShareTTM?: number;
+  };
+  marketCapTTM?: number;
+  currentRatioTTM?: number;
+  roeTTM?: number;
+  cashPerShareTTM?: number;
 }
 
 export interface CompanySearch {

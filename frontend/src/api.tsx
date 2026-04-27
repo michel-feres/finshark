@@ -1,5 +1,5 @@
 import axios from "axios";
-import {FinnhubProfileResponse, FinnhubSearchResponse} from "./company";
+import {FinnhubProfileResponse, FinnhubSearchResponse, FinnhubMetricsResponse} from "./company";
 
 export const searchCompanies = async (query: string) => {
     try {
@@ -17,16 +17,26 @@ export const searchCompanies = async (query: string) => {
     }
 };
 
-// 🏢 PROFILE
 export const getCompanyProfile = async (symbol: string) => {
     try {
         const response = await axios.get<FinnhubProfileResponse>(
             `https://finnhub.io/api/v1/stock/profile2?symbol=${symbol}&token=${process.env.REACT_APP_API_KEY}`
         );
-
         return response.data;
     } catch (error: any) {
         console.log(error.message);
+        return null;
+    }
+};
+
+export const getKeyMetrics = async (query: string) => {
+    try {
+        const response = await axios.get<FinnhubMetricsResponse>(
+            `https://finnhub.io/api/v1/stock/metric?symbol=${query}&metric=all&token=${process.env.REACT_APP_API_KEY}`
+        );
+        return response.data.metric;
+    } catch (error) {
+        console.log(error);
         return null;
     }
 };
