@@ -40,6 +40,32 @@ export interface FinnhubMetricsResponse {
   cashPerShareTTM?: number;
 }
 
+interface FinnhubFinancialsResponse {
+  data: any[];
+}
+
+export interface FinnhubBalanceSheet {
+  data: any[];
+  date: string;
+  totalAssets: number;
+  totalLiabilities: number;
+}
+
+export interface FinnhubCashFlow {
+  data: any[];
+  date: string;
+  operatingCashFlow: number;
+  freeCashFlow: number;
+}
+
+export interface FinnhubTenK {
+  filedDate: string;
+  type: string;
+  reportUrl: string;
+  symbol: string;
+  form: string;
+}
+
 export interface CompanySearch {
   symbol: string;
   name: string;
@@ -121,100 +147,9 @@ export interface CompanyKeyRatios {
 
 export interface CompanyIncomeStatement {
   date: string;
-  symbol: string;
-  reportedCurrency: string;
-  cik: string;
-  fillingDate: string;
-  acceptedDate: string;
-  calendarYear: string;
-  period: string;
   revenue: number;
-  costOfRevenue: number;
-  grossProfit: number;
-  grossProfitRatio: number;
-  researchAndDevelopmentExpenses: number;
-  generalAndAdministrativeExpenses: number;
-  sellingAndMarketingExpenses: number;
-  sellingGeneralAndAdministrativeExpenses: number;
-  otherExpenses: number;
-  operatingExpenses: number;
-  costAndExpenses: number;
-  interestIncome: number;
-  interestExpense: number;
-  depreciationAndAmortization: number;
-  ebitda: number;
-  ebitdaratio: number;
-  operatingIncome: number;
-  operatingIncomeRatio: number;
-  totalOtherIncomeExpensesNet: number;
-  incomeBeforeTax: number;
-  incomeBeforeTaxRatio: number;
-  incomeTaxExpense: number;
   netIncome: number;
-  netIncomeRatio: number;
-  eps: number;
-  epsdiluted: number;
-  weightedAverageShsOut: number;
-  weightedAverageShsOutDil: number;
-  link: string;
-  finalLink: string;
-}
-
-export interface CompanyBalanceSheet {
-  date: string;
-  symbol: string;
-  reportedCurrency: string;
-  cik: string;
-  fillingDate: string;
-  acceptedDate: string;
-  calendarYear: string;
-  period: string;
-  cashAndCashEquivalents: number;
-  shortTermInvestments: number;
-  cashAndShortTermInvestments: number;
-  netReceivables: number;
-  inventory: number;
-  otherCurrentAssets: number;
-  totalCurrentAssets: number;
-  propertyPlantEquipmentNet: number;
-  goodwill: number;
-  intangibleAssets: number;
-  goodwillAndIntangibleAssets: number;
-  longTermInvestments: number;
-  taxAssets: number;
-  otherNonCurrentAssets: number;
-  totalNonCurrentAssets: number;
-  otherAssets: number;
-  totalAssets: number;
-  accountPayables: number;
-  shortTermDebt: number;
-  taxPayables: number;
-  deferredRevenue: number;
-  otherCurrentLiabilities: number;
-  totalCurrentLiabilities: number;
-  longTermDebt: number;
-  deferredRevenueNonCurrent: number;
-  deferredTaxLiabilitiesNonCurrent: number;
-  otherNonCurrentLiabilities: number;
-  totalNonCurrentLiabilities: number;
-  otherLiabilities: number;
-  capitalLeaseObligations: number;
-  totalLiabilities: number;
-  preferredStock: number;
-  commonStock: number;
-  retainedEarnings: number;
-  accumulatedOtherComprehensiveIncomeLoss: number;
-  othertotalStockholdersEquity: number;
-  totalStockholdersEquity: number;
-  totalEquity: number;
-  totalLiabilitiesAndStockholdersEquity: number;
-  minorityInterest: number;
-  totalLiabilitiesAndTotalEquity: number;
-  totalInvestments: number;
-  totalDebt: number;
-  netDebt: number;
-  link: string;
-  finalLink: string;
+  operatingExpenses: number;
 }
 
 export interface CompanyCashFlow {
